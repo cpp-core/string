@@ -2,8 +2,8 @@
 //
 
 #pragma once
-#include "common.h"
-#include "traits/concepts.h"
+#include "core/common.h"
+#include "core/traits/concepts.h"
 
 namespace core {
 
