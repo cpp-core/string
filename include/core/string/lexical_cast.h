@@ -24,7 +24,7 @@ template<>
 struct lexical_cast_impl<string>
 { static string parse(string_view); };
 
-template<ArithmeticType T>
+template<Arithmetic T>
 struct lexical_cast_impl<T>
 { static T parse(string_view s); };
 
