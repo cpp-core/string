@@ -13,7 +13,7 @@ struct lexical_cast_error : public std::runtime_error
 namespace detail
 {
 
-template<typename T>
+template<class T>
 struct lexical_cast_impl;
 
 template<>
@@ -30,8 +30,8 @@ struct lexical_cast_impl<T>
 
 }; // detail
 
-template<typename T>
-T lexical_cast(string_view s)
-{ return detail::lexical_cast_impl<T>::parse(s); }
+template<class T, class... Us>
+T lexical_cast(string_view s, Us... extra)
+{ return detail::lexical_cast_impl<T>::parse(s, extra...); }
 
 }; // end ns core
