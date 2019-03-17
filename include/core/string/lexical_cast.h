@@ -24,6 +24,10 @@ template<>
 struct lexical_cast_impl<string>
 { static string parse(string_view); };
 
+template<>
+struct lexical_cast_impl<const char*>
+{ static const char* parse(string_view); };
+
 template<Arithmetic T>
 struct lexical_cast_impl<T>
 { static T parse(string_view s); };
