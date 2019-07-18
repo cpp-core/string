@@ -3,6 +3,7 @@
 
 #pragma once
 #include "core/common.h"
+#include "core/span.h"
 
 namespace core {
 
@@ -66,6 +67,7 @@ public:
     constexpr size_t size() const { return Size; }
     const char *begin() const { return m_arr.begin(); }
     const char *end() const { return m_arr.end(); }
+    core::span<char> span() { return { m_arr.begin(), m_arr.end() }; }
     
     char *begin() { return m_arr.begin(); }
     char *end() { return m_arr.end(); }
