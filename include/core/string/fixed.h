@@ -74,6 +74,10 @@ public:
     
     char operator[](index_t i) const { return m_arr[i]; }
     char& operator[](index_t i) { return m_arr[i]; }
+
+    template<class Archive>
+    void serialize(Archive& archive)
+    { archive(m_arr); }
     
 private:
     std::array<char,Size> m_arr;
