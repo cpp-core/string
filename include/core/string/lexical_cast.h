@@ -3,7 +3,6 @@
 
 #pragma once
 #include "core/common.h"
-#include "core/traits/concepts.h"
 
 namespace core {
 
@@ -28,9 +27,45 @@ template<>
 struct lexical_cast_impl<const char*>
 { static const char* parse(string_view); };
 
-template<Arithmetic T>
-struct lexical_cast_impl<T>
-{ static T parse(string_view s); };
+template<>
+struct lexical_cast_impl<uint8>
+{ static uint8 parse(string_view s); };
+
+template<>
+struct lexical_cast_impl<uint16>
+{ static uint16 parse(string_view s); };
+
+template<>
+struct lexical_cast_impl<uint32>
+{ static uint32 parse(string_view s); };
+
+template<>
+struct lexical_cast_impl<uint64>
+{ static uint64 parse(string_view s); };
+
+template<>
+struct lexical_cast_impl<int8>
+{ static int8 parse(string_view s); };
+
+template<>
+struct lexical_cast_impl<int16>
+{ static int16 parse(string_view s); };
+
+template<>
+struct lexical_cast_impl<int32>
+{ static int32 parse(string_view s); };
+
+template<>
+struct lexical_cast_impl<int64>
+{ static int64 parse(string_view s); };
+
+template<>
+struct lexical_cast_impl<real32>
+{ static real32 parse(string_view s); };
+
+template<>
+struct lexical_cast_impl<real64>
+{ static real64 parse(string_view s); };
 
 }; // detail
 

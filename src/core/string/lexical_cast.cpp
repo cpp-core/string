@@ -5,6 +5,7 @@
 #include "core/traits/type.h"
 #include "core/string/lexical_cast.h"
 #include "core/string/from_chars.h"
+#include "core/pp/map.h"
 
 namespace core {
 
@@ -30,8 +31,8 @@ string lexical_cast_impl<string>::parse(string_view input)
 const char* lexical_cast_impl<const char*>::parse(string_view input)
 { return input.begin(); }
 
-template<Arithmetic T>
-T lexical_cast_impl<T>::parse(string_view input)
+template<class T>
+T parse_number(string_view input)
 {
     try
     {
@@ -51,18 +52,12 @@ T lexical_cast_impl<T>::parse(string_view input)
     }
 }
 
-}; // detail
+#define CODE(T)						\
+    T lexical_cast_impl<T>::parse(string_view input)	\
+    { return parse_number<T>(input); }
+CORE_PP_EVAL_MAP(CODE, int8, int16, int32, int64, uint8, uint16, uint32, uint64, real32, real64);
+#undef CODE
 
-template struct detail::lexical_cast_impl<int8>;
-template struct detail::lexical_cast_impl<int16>;
-template struct detail::lexical_cast_impl<int32>;
-template struct detail::lexical_cast_impl<int64>;
-template struct detail::lexical_cast_impl<uint8>;
-template struct detail::lexical_cast_impl<uint16>;
-template struct detail::lexical_cast_impl<uint32>;
-template struct detail::lexical_cast_impl<uint64>;
-template struct detail::lexical_cast_impl<real32>;
-template struct detail::lexical_cast_impl<real64>;
-template struct detail::lexical_cast_impl<real128>;
+}; // detail
 
 }; // end ns core
