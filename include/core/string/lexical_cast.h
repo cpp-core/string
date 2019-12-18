@@ -67,6 +67,10 @@ template<>
 struct lexical_cast_impl<real64>
 { static real64 parse(string_view s); };
 
+template<>
+struct lexical_cast_impl<real128>
+{ static real128 parse(string_view s); };
+
 }; // detail
 
 template<class T, class... Us>

@@ -2,10 +2,10 @@
 //
 
 #include <gtest/gtest.h>
-#include <fmt/format.h>
 #include "core/string/lexical_cast.h"
-#include "ranges/view/take.h"
-#include "ranges/view/sample.h"
+#include "core/traits/extrema.h"
+#include "core/range/sample.h"
+#include "range/v3/view/take.hpp"
 
 using namespace core;
 
@@ -32,7 +32,7 @@ struct number_test
 	
 	EXPECT_THROW(lexical_cast<T>("abc"), lexical_cast_error);
 	
-	auto generator = v::uniform(actual_min_value, actual_max_value);
+	auto generator = cr::uniform(actual_min_value, actual_max_value);
 	for (auto value : generator | v::take(5))
 	{
 	    string s = fmt::format(extrema<T>::fmt_spec(), value);

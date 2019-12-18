@@ -55,7 +55,9 @@ T parse_number(string_view input)
 #define CODE(T)						\
     T lexical_cast_impl<T>::parse(string_view input)	\
     { return parse_number<T>(input); }
-CORE_PP_EVAL_MAP(CODE, int8, int16, int32, int64, uint8, uint16, uint32, uint64, real32, real64);
+CORE_PP_EVAL_MAP(CODE, int8, int16, int32, int64,
+		 uint8, uint16, uint32, uint64,
+		 real32, real64, real128);
 #undef CODE
 
 }; // detail
