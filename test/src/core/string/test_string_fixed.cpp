@@ -2,10 +2,9 @@
 //
 
 #include <gtest/gtest.h>
-#include <fmt/format.h>
+#include <range/v3/view.hpp>
 #include "string/fixed.h"
 #include "core/range/string.h"
-#include "range/v3/view.hpp"
 
 using namespace core;
 static const size_t NumberLoops = 100'000;

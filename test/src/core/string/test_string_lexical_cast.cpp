@@ -2,10 +2,10 @@
 //
 
 #include <gtest/gtest.h>
+#include <range/v3/view/take.hpp>
 #include "core/string/lexical_cast.h"
 #include "core/traits/extrema.h"
 #include "core/range/sample.h"
-#include "range/v3/view/take.hpp"
 
 using namespace core;
 
