@@ -4,11 +4,11 @@
 #include <gtest/gtest.h>
 #include <fmt/format.h>
 #include "string/fixed.h"
-#include "ranges/view/string.h"
-#include "ranges/view/take.h"
+#include "core/range/string.h"
+#include "range/v3/view.hpp"
 
 using namespace core;
-static const size_t NumberLoops = 1'000'000;
+static const size_t NumberLoops = 100'000;
 
 template<size_t N>
 bool match(const fixed_string<N>& s, string_view view)
@@ -37,25 +37,13 @@ bool match(const fixed_string<N>& s, CharArray view)
 
 TEST(StringFixed, ConstructorStringView)
 {
-    // auto gstr = gen_string('a', 'z', 0, 8);
-    auto gstr = v::str::alpha(8);
+    auto gstr = cr::str::alpha(v::repeat(8));
     for (auto s : gstr | v::take(NumberLoops))
     {
 	auto f = fixed_string<8u>(s);
 	EXPECT_TRUE(match(f, s));
     }
 }
-
-// TEST(StringFixed, ConstructorArray)
-// {
-//     auto garr = gen_array<8>('a', 'z', 0, 8);
-//     for (size_t i = 0; i < NumberLoops; ++i)
-//     {
-// 	auto a = garr();
-// 	auto f = fixed_string<8u>(a);
-// 	EXPECT_TRUE(match(f, a));
-//     }
-// }
 
 TEST(StringFixed, Size)
 {
