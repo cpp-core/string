@@ -1,4 +1,4 @@
-// Copyright (C) 2017, 2018, 2019 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2020 by Mark Melton
 //
 
 #include <gtest/gtest.h>
@@ -106,6 +106,48 @@ TEST(StringSplit, StringDelimStringDelimString)
     EXPECT_EQ(fields[0], "foo");
     EXPECT_EQ(fields[1], "bar");
     EXPECT_EQ(fields[2], "zoo");
+}
+
+TEST(StringSplit, StringSplitFirstLastEmpty)
+{
+    auto s = "";
+    EXPECT_EQ(split_first(s, ":"), string_view{});
+    EXPECT_EQ(split_last(s, ":"), string_view{});
+}
+
+TEST(StringSplit, StringSplitFirstLastDelim)
+{
+    auto s = ":";
+    EXPECT_EQ(split_first(s, ":"), string_view{});
+    EXPECT_EQ(split_last(s, ":"), string_view{});
+}
+
+TEST(StringSplit, StringSplitFirstLastString)
+{
+    auto s = "foo";
+    EXPECT_EQ(split_first(s, ":"), string_view{"foo"});
+    EXPECT_EQ(split_last(s, ":"), string_view{"foo"});
+}
+
+TEST(StringSplit, StringSplitFirstLastDelimString)
+{
+    auto s = ":foo";
+    EXPECT_EQ(split_first(s, ":"), string_view{});
+    EXPECT_EQ(split_last(s, ":"), string_view{"foo"});
+}
+
+TEST(StringSplit, StringSplitFirstLastStringDelim)
+{
+    auto s = "foo:";
+    EXPECT_EQ(split_first(s, ":"), string_view{"foo"});
+    EXPECT_EQ(split_last(s, ":"), string_view{});
+}
+
+TEST(StringSplit, StringSplitFirstLastStringDelimString)
+{
+    auto s = "foo:bar";
+    EXPECT_EQ(split_first(s, ":"), string_view{"foo"});
+    EXPECT_EQ(split_last(s, ":"), string_view{"bar"});
 }
 
 int main(int argc, char *argv[])

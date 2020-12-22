@@ -1,4 +1,4 @@
-// Copyright (C) 2017, 2018, 2019 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2020 by Mark Melton
 //
 
 #include "core/common.h"
@@ -92,6 +92,16 @@ size_t fast_split(string_view input, char delim, string_views& fields)
 	    begin = ptr + 1;
 	}
     return idx;
+}
+
+std::string_view split_first(std::string_view str, std::string_view delim) {
+    if (str.empty()) return string_view{};
+    else return split(str, delim).front();
+}
+
+std::string_view split_last(std::string_view str, std::string_view delim) {
+    if (str.empty()) return string_view{};
+    else return split(str, delim).back();
 }
 
 }; // end ns core
