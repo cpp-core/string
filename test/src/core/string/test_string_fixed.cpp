@@ -1,4 +1,4 @@
-// Copyright (C) 2017, 2018, 2019 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2021 by Mark Melton
 //
 
 #include <gtest/gtest.h>
@@ -54,7 +54,6 @@ TEST(StringFixed, Span)
 {
     fixed_string<10> x;
     auto span = x.span();
-    EXPECT_EQ(span.begin(), x.begin());
     EXPECT_EQ(span.size(), x.end() - x.begin());
 }
 

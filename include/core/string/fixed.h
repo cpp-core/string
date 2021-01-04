@@ -1,4 +1,4 @@
-// Copyright (C) 2018, 2019 by Mark Melton
+// Copyright (C) 2018, 2019, 2021 by Mark Melton
 //
 
 #pragma once
@@ -67,7 +67,7 @@ public:
     constexpr size_t size() const { return Size; }
     const char *begin() const { return m_arr.begin(); }
     const char *end() const { return m_arr.end(); }
-    core::span<char> span() { return { m_arr.begin(), m_arr.end() }; }
+    std::span<char> span() { return { m_arr.begin(), m_arr.end() }; }
     
     char *begin() { return m_arr.begin(); }
     char *end() { return m_arr.end(); }
