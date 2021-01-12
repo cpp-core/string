@@ -1,4 +1,4 @@
-// Copyright (C) 2019 by Mark Melton
+// Copyright (C) 2019, 2021 by Mark Melton
 //
 
 #include <list>
@@ -18,10 +18,10 @@ string join(const Container& strs, string_view separator, string_view terminator
 	return string{terminator};
 
     string infix{separator};
-    auto r = fp::fold_l(strs.begin(), strs.end(),
-			[=](const auto& a, const auto& b) { return a + infix + b; },
-			[=](const auto& a) { return string(a); });
-    r += terminator;
+    auto r = fp::fold_l(++strs.begin(), strs.end(),
+			[=](const auto& a, const auto& b) { return a + infix + string(b); },
+			string{*strs.begin()});
+    r += string{terminator};
     return r;
 }
 
