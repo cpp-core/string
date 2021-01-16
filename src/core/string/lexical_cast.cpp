@@ -1,4 +1,4 @@
-// Copyright (C) 2017, 2018, 2019 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2021 by Mark Melton
 //
 
 #include <fmt/printf.h>
@@ -24,6 +24,9 @@ bool lexical_cast_impl<bool>::parse(string_view input)
 	return true;
     throw lexical_cast_error(input, "bool");
 }
+
+char lexical_cast_impl<char>::parse(string_view input)
+{ return input[0]; }
 
 string lexical_cast_impl<string>::parse(string_view input)
 { return string(input); }

@@ -1,4 +1,4 @@
-// Copyright (C) 2017, 2018, 2019 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2021 by Mark Melton
 //
 
 #pragma once
@@ -18,6 +18,10 @@ struct lexical_cast_impl;
 template<>
 struct lexical_cast_impl<bool>
 { static bool parse(string_view); };
+
+template<>
+struct lexical_cast_impl<char>
+{ static char parse(string_view); };
 
 template<>
 struct lexical_cast_impl<string>
