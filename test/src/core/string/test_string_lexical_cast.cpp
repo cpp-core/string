@@ -1,4 +1,4 @@
-// Copyright (C) 2017, 2018, 2019 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2021 by Mark Melton
 //
 
 #include <gtest/gtest.h>
@@ -44,32 +44,67 @@ struct number_test
     }
 };
 
+template<class T>
+void hex_test() {
+    auto rng = std::random_device();
+    for (auto i = 0; i < 256; ++i) {
+	T n{(T)rng()};
+	auto s = fmt::format("0x{:x}", n);
+	auto m = lexical_cast<T>(s);
+	EXPECT_EQ(m, n);
+    }
+}
+
 TEST(StringLexicalCastTest, Int8)
-{ number_test<int8>::apply(); }
+{
+    number_test<int8>::apply();
+    hex_test<int8>();
+}
 
 TEST(StringLexicalCastTest, Int16)
-{ number_test<int16>::apply(); }
+{
+    number_test<int16>::apply();
+    hex_test<int16>();
+}
 
 TEST(StringLexicalCastTest, Int32)
-{ number_test<int32>::apply(); }
+{
+    number_test<int32>::apply();
+    hex_test<int32>();
+}
 
 TEST(StringLexicalCastTest, Int64)
-{ number_test<int64>::apply(); }
+{
+    number_test<int64>::apply();
+    hex_test<int64>();
+}
 
 TEST(StringLexicalCastTest, Uint8)
-{ number_test<uint8>::apply(); }
+{
+    number_test<uint8>::apply();
+    hex_test<uint8>();
+}
 
 TEST(StringLexicalCastTest, Uint16)
-{ number_test<uint16>::apply(); }
+{
+    number_test<uint16>::apply();
+    hex_test<uint16>();
+}
 
 TEST(StringLexicalCastTest, Uint32)
-{ number_test<uint32>::apply(); }
+{
+    number_test<uint32>::apply();
+    hex_test<uint32>();
+}
 
 TEST(StringLexicalCastTest, Uint64)
-{ number_test<uint64>::apply(); }
+{
+    number_test<uint64>::apply();
+    hex_test<uint64>();
+}
 
-// TEST(StringLexicalCastTest, Real32)
-// { number_test<real32>::apply(); }
+TEST(StringLexicalCastTest, Real32)
+{ number_test<real32>::apply(); }
 
 TEST(StringLexicalCastTest, Real64)
 { number_test<real64>::apply(); }

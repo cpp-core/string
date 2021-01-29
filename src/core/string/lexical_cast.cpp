@@ -35,7 +35,44 @@ const char* lexical_cast_impl<const char*>::parse(string_view input)
 { return input.begin(); }
 
 template<class T>
-T parse_number(string_view input)
+T parse_integral(string_view input)
+{
+    try
+    {
+	T value{0};
+	int base{10};
+	const char *start = input.begin();
+	
+	if ((input.size() > 1) and (input[0] == '0') and
+	    ((input[1] == 'x') or input[1] == 'X')) {
+	    start += 2;
+	    base = 16;
+	}
+	
+	auto r = std::from_chars(start, input.end(), value, base);
+	if (r.ptr != input.end())
+	    throw lexical_cast_error(input, type_traits<T>::name);
+	return value;
+    }
+    catch (std::invalid_argument const&)
+    {
+	throw lexical_cast_error(input, type_traits<T>::name);
+    }
+    catch (std::out_of_range const&)
+    {
+	throw lexical_cast_error(input, type_traits<T>::name);
+    }
+}
+
+#define CODE(T)						\
+    T lexical_cast_impl<T>::parse(string_view input)	\
+    { return parse_integral<T>(input); }
+CORE_PP_EVAL_MAP(CODE, int8, int16, int32, int64,
+		 uint8, uint16, uint32, uint64);
+#undef CODE
+
+template<class T>
+T parse_floating_point(string_view input)
 {
     try
     {
@@ -57,10 +94,8 @@ T parse_number(string_view input)
 
 #define CODE(T)						\
     T lexical_cast_impl<T>::parse(string_view input)	\
-    { return parse_number<T>(input); }
-CORE_PP_EVAL_MAP(CODE, int8, int16, int32, int64,
-		 uint8, uint16, uint32, uint64,
-		 real32, real64, real128);
+    { return parse_floating_point<T>(input); }
+CORE_PP_EVAL_MAP(CODE, real32, real64, real128);
 #undef CODE
 
 }; // detail
