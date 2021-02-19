@@ -2,9 +2,17 @@
 //
 
 #pragma once
+#include <sstream>
 #include "core/common.h"
 
 namespace core {
+
+template<class T>
+string to_string(const T& value) {
+    std::stringstream ss;
+    ss << value;
+    return ss.str();
+}
 
 struct lexical_cast_error : public std::runtime_error
 { lexical_cast_error(string_view input, string_view type); };
