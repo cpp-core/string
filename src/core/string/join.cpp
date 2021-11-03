@@ -18,9 +18,8 @@ string join(const Container& strs, string_view separator, string_view terminator
 	return string{terminator};
 
     string infix{separator};
-    auto r = fp::fold_l(++strs.begin(), strs.end(),
-			[=](const auto& a, const auto& b) { return a + infix + string(b); },
-			string{*strs.begin()});
+    auto r = fp::fold_l(++strs.begin(), strs.end(), string{*strs.begin()},
+			[=](const auto& a, const auto& b) { return a + infix + string(b); });
     r += string{terminator};
     return r;
 }
