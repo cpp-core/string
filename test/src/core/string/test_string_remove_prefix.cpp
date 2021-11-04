@@ -1,8 +1,8 @@
-// Copyright (C) 2019 by Mark Melton
+// Copyright (C) 2019, 2021 by Mark Melton
 //
 
 #include <gtest/gtest.h>
-#include "string/remove_prefix.h"
+#include "core/string/remove_prefix.h"
 
 using namespace core;
 

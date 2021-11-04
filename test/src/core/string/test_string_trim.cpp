@@ -1,9 +1,9 @@
-// Copyright (C) 2017, 2018, 2019 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2021 by Mark Melton
 //
 
 #include <gtest/gtest.h>
 #include <fmt/format.h>
-#include "string/trim.h"
+#include "core/string/trim.h"
 
 using namespace core;
 

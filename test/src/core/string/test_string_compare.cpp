@@ -1,8 +1,8 @@
-// Copyright (C) 2019 by Mark Melton
+// Copyright (C) 2019, 2021 by Mark Melton
 //
 
 #include <gtest/gtest.h>
-#include "string/compare.h"
+#include "core/string/compare.h"
 
 using namespace core;
 

@@ -3,7 +3,7 @@
 
 #include <gtest/gtest.h>
 #include <range/v3/view.hpp>
-#include "string/fixed.h"
+#include "core/string/fixed.h"
 #include "core/range/string.h"
 
 using namespace core;

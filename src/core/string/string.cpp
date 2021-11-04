@@ -3,7 +3,7 @@
 
 #include <regex>
 #include "core/string/string.h"
-#include "core/common.h"
+#include "core/fp/apply.h"
 
 core::String operator"" _S(const char *str, unsigned long) {
     return core::String{str};
@@ -20,23 +20,63 @@ String::String(std::string&& str)
     : Base(str) {
 }
 
-String& String::strip(const std::string& pattern) {
+String String::to_lower() const {
+    String str{*this};
+    return str.to_lower1();
+}
+
+String& String::to_lower1() {
+    core::fp::apply(begin(), end(), [](char& c) { c = std::tolower(c); });
+    return *this;
+}
+
+String String::to_upper() const {
+    String str{*this};
+    return str.to_upper1();
+}
+
+String& String::to_upper1() {
+    core::fp::apply(begin(), end(), [](char& c) { c = std::toupper(c); });
+    return *this;
+}
+
+String String::strip(const std::string& pattern) const {
     if (pattern.size() > 0) {
 	std::regex r{pattern};
-	*this = std::regex_replace(*this, r, "");
+	return std::regex_replace(*this, r, "");
     }
     return *this;
 }
 
-String& String::lstrip(const std::string& pattern) {
+String& String::strip1(const std::string& pattern) {
+    *this = strip(pattern);
+    return *this;
+}
+
+String String::lstrip(const std::string& pattern) const {
     return strip("^" + pattern);
 }
 
-String& String::rstrip(const std::string& pattern) {
+String& String::lstrip1(const std::string& pattern) {
+    *this = lstrip(pattern);
+    return *this;
+}
+
+String String::rstrip(const std::string& pattern) const {
     return strip(pattern + "$");
 }
 
-String& String::intersect_prefix(const std::string& str) {
+String& String::rstrip1(const std::string& pattern) {
+    *this = strip(pattern + "$");
+    return *this;
+}
+
+String String::common_prefix(const std::string& str) const {
+    String r{*this};
+    return r.intersect_prefix1(str);
+}
+
+String& String::intersect_prefix1(const std::string& str) {
     auto idx = 0;
     for (; idx < std::min(size(), str.size()); ++idx)
 	if (at(idx) != str.at(idx))
@@ -45,9 +85,14 @@ String& String::intersect_prefix(const std::string& str) {
     return *this;
 }
 
+bool String::match(const string& pattern) const {
+    std::regex re{pattern};
+    return std::regex_search(*this, re);
+}
+
 std::string common_prefix(const std::string& a, const std::string& b) {
     String sa{a};
-    sa.intersect_prefix(b);
+    sa.intersect_prefix1(b);
     return sa.str();
 }
 
