@@ -7,7 +7,7 @@
 #include "coro/stream/stream.h"
 
 using namespace core;
-using namespace costr;
+using namespace coro;
 
 const int NumberSamples = 64;
 
