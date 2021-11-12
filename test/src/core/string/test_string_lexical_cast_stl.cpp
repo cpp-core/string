@@ -18,7 +18,7 @@ TEST(StringLexicalStl, Pair)
 {
     mp::foreach<TestTypes>([]<class T>() {
 	    mp::foreach<TestTypes>([]<class U>() {
-		    auto g = take(zip(sampler<T>(), sampler<U>()), NumberSamples);
+		    auto g = sampler<T>() * sampler<U>() | zip() | take(NumberSamples);
 		    for (const auto& [a, b] : g) {
 			auto str = fmt::format("{}:{}", a, b);
 			auto [first, second] = lexical_cast<std::pair<T,U>>(str);

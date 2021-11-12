@@ -45,10 +45,8 @@ TEST(String, ToUpper)
 
 TEST(String, Strip)
 {
-    auto gl = str::alpha();
-    auto gc = str::alpha();
-    auto gr = str::alpha();
-    for (auto [l, c, r] : take(zip(std::move(gl), std::move(gc), std::move(gr)), NumberSamples)) {
+    auto g = str::alpha() * str::alpha() * str::alpha() | zip() | take(NumberSamples);
+    for (auto [l, c, r] : g) {
 	bool lgood = l.empty() or c.empty() or (l.back() != c.front());
 	bool rgood = r.empty() or c.empty() or (r.front() != c.back());
 	
@@ -79,10 +77,8 @@ TEST(String, Strip)
 
 TEST(String, IntersectPrefix)
 {
-    auto gl = str::alpha();
-    auto gc = str::alpha();
-    auto gr = str::alpha();
-    for (auto [l, c, r] : take(zip(std::move(gl), std::move(gc), std::move(gr)), NumberSamples)) {
+    auto g = str::alpha() * str::alpha() * str::alpha() | zip() | take(NumberSamples);
+    for (auto [l, c, r] : g) {
 	String a = c + l;
 	String b = c + r;
 	auto common = common_prefix(a, b);
