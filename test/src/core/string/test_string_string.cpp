@@ -110,6 +110,23 @@ TEST(String, Matches)
     EXPECT_FALSE(str.match("nm"));
 }
 
+TEST(String, Parse)
+{
+    auto str = "1.23"_S;
+    auto x = str.parse<real>();
+    EXPECT_EQ(x, 1.23);
+    EXPECT_THROW(str.parse<int>(), std::runtime_error);
+}
+
+TEST(String, ParseTuple)
+{
+    auto str = "1.23,hello"_S;
+    auto [x, s] = str.parse<real,std::string>(",");
+    EXPECT_EQ(x, 1.23);
+    EXPECT_EQ(s, "hello"s);
+    EXPECT_THROW((str.parse<real,real>(",")), std::runtime_error);
+}
+
 int main(int argc, char *argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);

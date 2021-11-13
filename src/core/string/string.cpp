@@ -90,6 +90,16 @@ bool String::match(const string& pattern) const {
     return std::regex_search(*this, re);
 }
 
+std::vector<std::string_view> String::split_on_regex(const std::string &regex) const {
+    std::regex r{regex};
+    std::sregex_token_iterator iter(begin(), end(), r, -1);
+    std::sregex_token_iterator end;
+    std::vector<std::string_view> result;
+    for ( ; iter != end; ++iter)
+	result.emplace_back(iter->first.base(), iter->second - iter->first);
+    return result;
+}
+
 std::string common_prefix(const std::string& a, const std::string& b) {
     String sa{a};
     sa.intersect_prefix1(b);

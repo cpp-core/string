@@ -3,16 +3,16 @@
 
 #pragma once
 #include <string>
-#include "core/common.h"
+#include "core/string/lexical_cast.h"
+#include "core/tuple/parse.h"
 
 namespace core {
 
-// String - Transparently extends std::string with convenient manipulation methods.
+// The String class transparently extends std::string with convenient manipulation methods.
 //
-// Methods with both const and modifying versions are differentiated
-// by denoting the const versions with [[nodiscard]] and appending a 1
-// to the name of the modifying version (analagous to scheme's
-// convention of set!).
+// Methods with both const and modifying versions are differentiated by denoting the const
+// versions with [[nodiscard]] and appending a 1 to the name of the modifying version
+// (analagous to scheme's convention of set!).
 class String : public std::string {
 public:
     using Base = std::string;
@@ -73,11 +73,44 @@ public:
     // str.match("abc$")     == false;
     // str.match("^xyz")     == false;
     bool match(const string& pattern) const;
+
+    // Split on the given `regex` and return the vector of results.
+    std::vector<string_view> split_on_regex(const std::string& regex) const;
+
+    // Return the lexical_cast of this string to type `T`.
+    //
+    // *auto str = "1.23_S";
+    // str.parse<real>() --> 1.23
+    // str.parse<int>()  --> throws*
+    template<class T>
+    T parse() const {
+	return core::lexical_cast<T>(*this);
+    }
+    
+    // Split on the given `regex` and return a tuple of parsed results.
+    //
+    // *auto str = "1.23 foo"_S
+    // str.parse<real,std::string>() --> std::tuple<1.23,"foo">
+    // str.parse<real,real>()        --> throws*
+    // str.parse<real>()             --> throws*
+    template<class... Ts>
+    requires (sizeof...(Ts) > 1)
+    std::tuple<Ts...> parse(const std::string& regex) const {
+	constexpr auto N = sizeof...(Ts);
+	auto fields = split_on_regex(regex);
+	if (fields.size() != N)
+	    throw core::runtime_error("expected {} fields, but got {}", N, fields.size());
+	return core::tp::parse<std::tuple<Ts...>>(fields);
+    }
 };
 
 std::string common_prefix(const std::string& a, const std::string& b);
+
+// A vector of String
+using Strings = std::vector<String>;
 
 }; // end core
 
 // Create a String from characters.
 core::String operator"" _S(const char*, unsigned long);
+
