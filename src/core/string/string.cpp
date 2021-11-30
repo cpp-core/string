@@ -3,7 +3,7 @@
 
 #include <regex>
 #include "core/string/string.h"
-#include "core/fp/apply.h"
+#include "core/mr/mr.h"
 
 core::String operator"" _S(const char *str, unsigned long) {
     return core::String{str};
@@ -26,7 +26,7 @@ String String::to_lower() const {
 }
 
 String& String::to_lower1() {
-    core::fp::apply(begin(), end(), [](char& c) { c = std::tolower(c); });
+    core::mr::source(*this).apply([](char& c) { c = std::tolower(c); }).eval();
     return *this;
 }
 
@@ -36,7 +36,7 @@ String String::to_upper() const {
 }
 
 String& String::to_upper1() {
-    core::fp::apply(begin(), end(), [](char& c) { c = std::toupper(c); });
+    core::mr::source(*this).apply([](char& c) { c = std::toupper(c); }).eval();
     return *this;
 }
 
