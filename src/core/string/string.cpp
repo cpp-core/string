@@ -1,4 +1,4 @@
-// Copyright (C) 2021 by Mark Melton
+// Copyright (C) 2021, 2022 by Mark Melton
 //
 
 #include <regex>
@@ -18,6 +18,55 @@ String::String(const std::string& str)
 
 String::String(std::string&& str)
     : Base(str) {
+}
+
+bool String::contains(char character) const {
+    for (auto ch : *this)
+	if (ch == character)
+	    return true;
+    return false;
+}
+
+bool String::contains_any(string_view letters) const {
+    for (auto l : letters)
+	if (contains(l))
+	    return true;
+    return false;
+}
+
+bool String::contains_all(string_view letters) const {
+    for (auto l : letters)
+	if (not contains(l))
+	    return false;
+    return true;
+}
+
+bool String::contains_any(const std::set<char>& letters) const {
+    for (auto ch : *this)
+	if (letters.contains(ch))
+	    return true;
+    return false;
+}
+
+bool String::contains_all(const std::set<char>& letters) const {
+    for (auto ch : letters)
+	if (not contains(ch))
+	    return false;
+    return true;
+}
+
+bool String::is_alpha() const {
+    for (auto ch : *this)
+	if (not std::isalpha(ch))
+	    return false;
+    return true;
+}
+
+bool String::unique() const {
+    std::set<char> letters;
+    for (auto ch : *this)
+	letters.insert(ch);
+    return letters.size() == size();
 }
 
 String String::to_lower() const {

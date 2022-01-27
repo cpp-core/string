@@ -1,4 +1,4 @@
-// Copyright (C) 2021 by Mark Melton
+// Copyright (C) 2021, 2022 by Mark Melton
 //
 
 #pragma once
@@ -27,6 +27,27 @@ public:
     // Return reference to the underlying string
     const std::string& str() const { return *this; }
 
+    // Return true if String contains the given character.
+    bool contains(char ch) const;
+    
+    // Return true is String contains any characters in letters.
+    bool contains_any(string_view letters) const;
+	
+    // Return true is String contains all characters in letters.
+    bool contains_all(string_view letters) const;
+	
+    // Return true is String contains any characters in letters.
+    bool contains_any(const std::set<char>& letters) const;
+	
+    // Return true is String contains all characters in letters.
+    bool contains_all(const std::set<char>& letters) const;
+	
+    // Return true if String contains only alpha characters.
+    bool is_alpha() const;
+
+    // Return true if all letters in String are unique.
+    bool unique() const;
+    
     // Return new String with characters converted to lower case.
     [[nodiscard]] String to_lower() const;
 
