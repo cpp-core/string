@@ -6,7 +6,6 @@
 #include "coro/stream/stream.h"
 
 using namespace core;
-static const size_t NumberLoops = 100'000;
 
 template<size_t N>
 bool match(const fixed_string<N>& s, string_view view)
