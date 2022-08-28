@@ -1,11 +1,10 @@
-// Copyright (C) 2017, 2018, 2019, 2021 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2021, 2022 by Mark Melton
 //
 
 #include <gtest/gtest.h>
-#include <range/v3/view/take.hpp>
 #include "core/string/lexical_cast.h"
 #include "core/traits/extrema.h"
-#include "core/range/sample.h"
+#include "coro/stream/stream.h"
 
 using namespace core;
 
@@ -32,8 +31,8 @@ struct number_test
 	
 	EXPECT_THROW(lexical_cast<T>("abc"), lexical_cast_error);
 	
-	auto generator = cr::uniform(actual_min_value, actual_max_value);
-	for (auto value : generator | v::take(5))
+	auto generator = coro::sampler<T>(actual_min_value, actual_max_value);
+	for (auto value : std::move(generator) | coro::take(5))
 	{
 	    string s = fmt::format(extrema<T>::fmt_spec(), value);
 	    auto n = lexical_cast<T>(s);

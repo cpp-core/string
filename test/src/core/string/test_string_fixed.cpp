@@ -1,10 +1,9 @@
-// Copyright (C) 2017, 2018, 2019, 2021 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2021, 2022 by Mark Melton
 //
 
 #include <gtest/gtest.h>
-#include <range/v3/view.hpp>
 #include "core/string/fixed.h"
-#include "core/range/string.h"
+#include "coro/stream/stream.h"
 
 using namespace core;
 static const size_t NumberLoops = 100'000;
@@ -36,9 +35,7 @@ bool match(const fixed_string<N>& s, CharArray view)
 
 TEST(StringFixed, ConstructorStringView)
 {
-    auto gstr = cr::str::alpha(v::repeat(8));
-    for (auto s : gstr | v::take(NumberLoops))
-    {
+    for (auto s : coro::str::alpha(8, 8) | coro::take(10)) {
 	auto f = fixed_string<8u>(s);
 	EXPECT_TRUE(match(f, s));
     }
