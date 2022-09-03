@@ -1,8 +1,8 @@
-// Copyright (C) 2017, 2018, 2019, 2021 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2021, 2022 by Mark Melton
 //
 
 #include <fmt/printf.h>
-#include "core/traits/type.h"
+#include "core/types/traits/type.h"
 #include "core/string/lexical_cast.h"
 #include "core/string/from_chars.h"
 #include "core/pp/map.h"

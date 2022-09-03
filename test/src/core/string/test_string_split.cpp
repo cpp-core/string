@@ -1,9 +1,9 @@
-// Copyright (C) 2017, 2018, 2019, 2020, 2021 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2020, 2021, 2022 by Mark Melton
 //
 
 #include <gtest/gtest.h>
 #include <fmt/format.h>
-#include "common.h"
+#include "core/utility/common.h"
 #include "core/string/split.h"
 
 using namespace core;

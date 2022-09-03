@@ -1,9 +1,9 @@
-// Copyright (C) 2018, 2019, 2021 by Mark Melton
+// Copyright (C) 2018, 2019, 2021, 2022 by Mark Melton
 //
 
 #pragma once
-#include "core/common.h"
-#include "core/span.h"
+#include "core/utility/common.h"
+#include "core/utility/span.h"
 
 namespace core {
 

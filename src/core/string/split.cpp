@@ -1,7 +1,7 @@
-// Copyright (C) 2017, 2018, 2019, 2020 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2020, 2022 by Mark Melton
 //
 
-#include "core/common.h"
+#include "core/utility/common.h"
 #include "core/string/split.h"
 
 namespace core {
