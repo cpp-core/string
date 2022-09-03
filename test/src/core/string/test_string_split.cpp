@@ -3,7 +3,7 @@
 
 #include <gtest/gtest.h>
 #include <fmt/format.h>
-#include "core/utility/common.h"
+#include "core/util/common.h"
 #include "core/string/split.h"
 
 using namespace core;

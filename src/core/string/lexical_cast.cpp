@@ -2,7 +2,7 @@
 //
 
 #include <fmt/printf.h>
-#include "core/types/traits/type.h"
+#include "core/type/traits/type.h"
 #include "core/string/lexical_cast.h"
 #include "core/string/from_chars.h"
 #include "core/pp/map.h"

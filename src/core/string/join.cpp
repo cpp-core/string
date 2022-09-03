@@ -4,7 +4,7 @@
 #include <list>
 #include <set>
 #include <vector>
-#include "core/utility/common.h"
+#include "core/util/common.h"
 #include "core/fp/fold.h"
 #include "core/string/join.h"
 

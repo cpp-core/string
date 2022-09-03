@@ -2,8 +2,8 @@
 //
 
 #pragma once
-#include "core/utility/common.h"
-#include "core/utility/span.h"
+#include "core/util/common.h"
+#include "core/util/span.h"
 
 namespace core {
 

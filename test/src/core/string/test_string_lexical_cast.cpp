@@ -3,7 +3,7 @@
 
 #include <gtest/gtest.h>
 #include "core/string/lexical_cast.h"
-#include "core/types/traits/extrema.h"
+#include "core/type/traits/extrema.h"
 #include "coro/stream/stream.h"
 
 using namespace core;
