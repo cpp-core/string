@@ -2,7 +2,7 @@
 //
 
 #include <fmt/printf.h>
-#include "core/type/traits/type.h"
+#include "core/mp/traits/type.h"
 #include "core/string/lexical_cast.h"
 #include "core/string/from_chars.h"
 #include "core/pp/map.h"
@@ -51,16 +51,16 @@ T parse_integral(string_view input)
 	
 	auto r = std::from_chars(start, input.end(), value, base);
 	if (r.ptr != input.end())
-	    throw lexical_cast_error(input, type_traits<T>::name);
+	    throw lexical_cast_error(input, mp::type_traits<T>::name);
 	return value;
     }
     catch (std::invalid_argument const&)
     {
-	throw lexical_cast_error(input, type_traits<T>::name);
+	throw lexical_cast_error(input, mp::type_traits<T>::name);
     }
     catch (std::out_of_range const&)
     {
-	throw lexical_cast_error(input, type_traits<T>::name);
+	throw lexical_cast_error(input, mp::type_traits<T>::name);
     }
 }
 
@@ -79,16 +79,16 @@ T parse_floating_point(string_view input)
 	T value = 0;
 	auto r = std::from_chars(input.begin(), input.end(), value);
 	if (r.ptr != input.end())
-	    throw lexical_cast_error(input, type_traits<T>::name);
+	    throw lexical_cast_error(input, mp::type_traits<T>::name);
 	return value;
     }
     catch (std::invalid_argument const&)
     {
-	throw lexical_cast_error(input, type_traits<T>::name);
+	throw lexical_cast_error(input, mp::type_traits<T>::name);
     }
     catch (std::out_of_range const&)
     {
-	throw lexical_cast_error(input, type_traits<T>::name);
+	throw lexical_cast_error(input, mp::type_traits<T>::name);
     }
 }
 
