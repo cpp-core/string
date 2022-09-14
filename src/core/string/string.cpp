@@ -1,9 +1,9 @@
 // Copyright (C) 2021, 2022 by Mark Melton
 //
 
+#include <algorithm>
 #include <regex>
 #include "core/string/string.h"
-#include "core/mr/mr.h"
 
 core::String operator"" _S(const char *str, unsigned long) {
     return core::String{str};
@@ -75,7 +75,7 @@ String String::to_lower() const {
 }
 
 String& String::to_lower1() {
-    core::mr::source(*this).apply([](char& c) { c = std::tolower(c); }).eval();
+    std::transform(begin(), end(), begin(), [](auto c) { return std::tolower(c); });
     return *this;
 }
 
@@ -85,7 +85,7 @@ String String::to_upper() const {
 }
 
 String& String::to_upper1() {
-    core::mr::source(*this).apply([](char& c) { c = std::toupper(c); }).eval();
+    std::transform(begin(), end(), begin(), [](auto c) { return std::toupper(c); });
     return *this;
 }
 
