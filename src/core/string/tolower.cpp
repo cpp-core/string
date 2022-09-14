@@ -3,7 +3,7 @@
 
 #include "core/string/tolower.h"
 
-namespace core
+namespace core::str
 {
 
 void tolower(std::string& str)

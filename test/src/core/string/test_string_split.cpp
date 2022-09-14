@@ -5,7 +5,7 @@
 #include <fmt/format.h>
 #include "core/string/split.h"
 
-using namespace core;
+using namespace core::str;
 using std::string_view;
 using string_views = std::vector<string_view>;
 

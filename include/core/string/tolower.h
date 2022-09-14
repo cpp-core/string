@@ -4,7 +4,7 @@
 #pragma once
 #include <string>
 
-namespace core
+namespace core::str
 {
 
 void tolower(std::string& str);

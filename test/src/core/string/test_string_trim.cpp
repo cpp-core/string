@@ -1,11 +1,11 @@
-// Copyright (C) 2017, 2018, 2019, 2021 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2021, 2022 by Mark Melton
 //
 
 #include <gtest/gtest.h>
 #include <fmt/format.h>
 #include "core/string/trim.h"
 
-using namespace core;
+using namespace core::str;
 
 TEST(StringTrim, Empty)
 {

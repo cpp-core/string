@@ -3,7 +3,7 @@
 
 #include "core/string/remove_prefix.h"
 
-namespace core
+namespace core::str
 {
 
 std::string_view remove_prefix_view(std::string_view str, std::string_view prefix)

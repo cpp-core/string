@@ -7,6 +7,7 @@
 #include "coro/stream/stream.h"
 
 using namespace core;
+using namespace core::str;
 using namespace std::string_literals;
 
 TEST(StringLexicalCastTest, String)

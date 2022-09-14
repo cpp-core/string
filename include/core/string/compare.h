@@ -4,7 +4,7 @@
 #pragma once
 #include <string>
 
-namespace core
+namespace core::str
 {
 
 bool iequals(std::string_view a, std::string_view b);

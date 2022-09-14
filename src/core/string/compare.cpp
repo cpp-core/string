@@ -3,7 +3,7 @@
 
 #include "core/string/compare.h"
 
-namespace core
+namespace core::str
 {
 
 bool iequals(std::string_view a, std::string_view b)

@@ -8,7 +8,7 @@
 #include "coro/stream/stream.h"
 
 using namespace std::string_literals;
-using namespace core;
+using namespace core::str;
 using namespace coro;
 using core::fp::all;
 

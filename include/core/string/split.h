@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace core {
+namespace core::str {
 
 std::vector<std::string_view> split(std::string_view str, std::string_view delim);
 

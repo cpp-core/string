@@ -5,12 +5,11 @@
 #include <regex>
 #include "core/string/string.h"
 
-core::String operator"" _S(const char *str, unsigned long) {
-    return core::String{str};
+core::str::String operator"" _S(const char *str, unsigned long) {
+    return core::str::String{str};
 }
 
-namespace core
-{
+namespace core::str {
 
 String::String(const std::string& str)
     : Base(str) {

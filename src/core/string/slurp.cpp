@@ -5,7 +5,7 @@
 #include <sstream>
 #include "core/string/slurp.h"
 
-namespace core {
+namespace core::str {
 
 std::string slurp_into_string(const std::string& filename)
 {

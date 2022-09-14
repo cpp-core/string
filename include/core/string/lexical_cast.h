@@ -5,7 +5,7 @@
 #include <cstdint>
 #include <sstream>
 
-namespace core {
+namespace core::str {
 
 template<class T>
 std::string tostring(const T& value) {
@@ -89,4 +89,4 @@ template<class T, class... Us>
 T lexical_cast(std::string_view s, Us... extra)
 { return detail::lexical_cast_impl<T>::parse(s, extra...); }
 
-}; // end ns core
+}; // core::str

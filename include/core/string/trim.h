@@ -1,11 +1,11 @@
-// Copyright (C) 2018, 2019 by Mark Melton
+// Copyright (C) 2018, 2019, 2022 by Mark Melton
 //
 
 #pragma once
 #include <string>
 #include <string_view>
 
-namespace core {
+namespace core::str {
 
 // ltrim, rtrim, trim -- Return a new string_view with leading,
 // trailing or both leading and trailing characters removed. The

@@ -3,7 +3,7 @@
 
 #include "core/string/replace.h"
 
-namespace core
+namespace core::str
 {
 
 namespace detail

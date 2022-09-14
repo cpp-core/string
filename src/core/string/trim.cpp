@@ -1,9 +1,9 @@
-// Copyright (C) 2018, 2019 by Mark Melton
+// Copyright (C) 2018, 2019, 2022 by Mark Melton
 //
 
 #include "core/string/trim.h"
 
-namespace core {
+namespace core::str {
 
 // ltrim -- trim whitespace from start of str.
 //

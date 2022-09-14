@@ -4,7 +4,7 @@
 #pragma once
 #include <string>
 
-namespace core
+namespace core::str
 {
 
 std::string remove_prefix(std::string_view str, std::string_view prefix);

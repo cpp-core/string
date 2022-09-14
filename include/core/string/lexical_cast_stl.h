@@ -4,14 +4,14 @@
 #pragma once
 #include "core/string/lexical_cast.h"
 
-namespace core::detail {
+namespace core::str::detail {
 
 template<class T, class U>
 struct lexical_cast_impl<std::pair<T,U>> {
     static std::pair<T,U> parse(std::string_view s, std::string_view sep = ":") {
 	auto pos = s.find_first_of(sep);
 	if ((pos == s.size()) or (pos != s.find_last_of(sep)))
-	    throw core::lexical_cast_error{s, "first:second"};
+	    throw core::str::lexical_cast_error{s, "first:second"};
 	auto first = lexical_cast<T>(s.substr(0, pos));
 	auto second = lexical_cast<U>(s.substr(pos + 1));
 	return {first, second};

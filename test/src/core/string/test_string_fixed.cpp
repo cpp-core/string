@@ -5,7 +5,7 @@
 #include "core/string/fixed.h"
 #include "coro/stream/stream.h"
 
-using namespace core;
+using namespace core::str;
 
 template<size_t N>
 bool match(const fixed_string<N>& s, std::string_view view)

@@ -8,7 +8,7 @@
 #include "core/tuple/parse.h"
 #include "core/util/exception.h"
 
-namespace core {
+namespace core::str {
 
 // The String class transparently extends std::string with convenient manipulation methods.
 //
@@ -107,7 +107,7 @@ public:
     // str.parse<int>()  --> throws*
     template<class T>
     T parse() const {
-	return core::lexical_cast<T>(*this);
+	return core::str::lexical_cast<T>(*this);
     }
     
     // Split on the given `regex` and return a tuple of parsed results.
@@ -132,8 +132,8 @@ std::string common_prefix(const std::string& a, const std::string& b);
 // A vector of String
 using Strings = std::vector<String>;
 
-}; // end core
+}; // end core::str
 
 // Create a String from characters.
-core::String operator"" _S(const char*, unsigned long);
+core::str::String operator"" _S(const char*, unsigned long);
 

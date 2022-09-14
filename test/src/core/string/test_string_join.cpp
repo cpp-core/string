@@ -1,4 +1,4 @@
-// Copyright (C) 2019, 2021 by Mark Melton
+// Copyright (C) 2019, 2021, 2022 by Mark Melton
 //
 
 #include <list>
@@ -7,7 +7,7 @@
 #include <gtest/gtest.h>
 #include "core/string/join.h"
 
-using namespace core;
+using namespace core::str;
 
 template<typename Container>
 void test_string_join_empty()

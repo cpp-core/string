@@ -4,7 +4,7 @@
 #pragma once
 #include <string>
 
-namespace core
+namespace core::str
 {
 
 namespace detail

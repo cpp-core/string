@@ -4,7 +4,7 @@
 #include <gtest/gtest.h>
 #include "core/string/tolower.h"
 
-using namespace core;
+using namespace core::str;
 using namespace std::string_literals;
 
 TEST(StringToLower, CStr)

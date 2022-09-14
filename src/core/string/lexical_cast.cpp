@@ -7,7 +7,7 @@
 #include "core/string/from_chars.h"
 #include "core/pp/map.h"
 
-namespace core {
+namespace core::str {
 
 lexical_cast_error::lexical_cast_error(std::string_view input, std::string_view type)
     : std::runtime_error(fmt::sprintf("cannot parse '%s' as '%s'", input, type))

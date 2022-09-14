@@ -8,7 +8,7 @@ using std::string_view;
 using strings = std::vector<string>;
 using string_views = std::vector<string_view>;
 
-namespace core {
+namespace core::str {
 
 // split -- split input by separators given in delims returning result
 // as vector of string_views.

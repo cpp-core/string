@@ -5,7 +5,7 @@
 #include <string>
 #include "core/util/span.h"
 
-namespace core {
+namespace core::str {
 
 struct fixed_string_error : public std::runtime_error
 {

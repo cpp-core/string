@@ -4,7 +4,7 @@
 #pragma once
 #include <string>
 
-namespace core
+namespace core::str
 {
 
 std::string slurp_into_string(const std::string& filename);

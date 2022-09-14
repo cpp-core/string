@@ -14,7 +14,7 @@ using string_views = std::vector<string_view>;
 using std::list;
 using std::set;
 
-namespace core {
+namespace core::str {
 
 template<class Container>
 string join(const Container& strs, string_view separator, string_view terminator)
