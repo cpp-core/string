@@ -1,10 +1,11 @@
-// Copyright (C) 2019, 2021 by Mark Melton
+// Copyright (C) 2019, 2021, 2022 by Mark Melton
 //
 
 #include <gtest/gtest.h>
 #include "core/string/tolower.h"
 
 using namespace core;
+using namespace std::string_literals;
 
 TEST(StringToLower, CStr)
 {
@@ -23,17 +24,17 @@ TEST(StringToLower, String)
 TEST(StringToLower, StringInPlace)
 {
     {
-	string str;
+	std::string str;
 	tolower(str);
 	EXPECT_EQ(str, "");
     }
     {
-	string str{"abc"};
+	std::string str{"abc"};
 	tolower(str);
 	EXPECT_EQ(str, "abc");
     }
     {
-	string str{"ABC"};
+	std::string str{"ABC"};
 	tolower(str);
 	EXPECT_EQ(str, "abc");
     }

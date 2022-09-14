@@ -2,23 +2,23 @@
 //
 
 #pragma once
+#include <nlohmann/json.hpp>
 #include "core/string/fixed.h"
-#include "core/extra/json/nljson.h"
 
-namespace core
-{
+namespace core {
 
+using json = nlohmann::json;
 
 template<size_t N>
-void to_json(nlj::json& j, const fixed_string<N>& str)
+void to_json(json& j, const fixed_string<N>& str)
 {
     j = str.begin();
 }
 
 template<size_t N>
-void from_json(const nlj::json& j, fixed_string<N>& str)
+void from_json(const json& j, fixed_string<N>& str)
 {
-    str = fixed_string<N>{j.get<string>()};
+    str = fixed_string<N>{j.get<std::string>()};
 }
 
 }; // core

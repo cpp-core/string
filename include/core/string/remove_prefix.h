@@ -2,12 +2,12 @@
 //
 
 #pragma once
-#include "core/util/common.h"
+#include <string>
 
 namespace core
 {
 
-string remove_prefix(string_view str, string_view prefix);
-string_view remove_prefix_view(string_view str, string_view prefix);
+std::string remove_prefix(std::string_view str, std::string_view prefix);
+std::string_view remove_prefix_view(std::string_view str, std::string_view prefix);
 
 }; // end ns core

@@ -2,9 +2,11 @@
 //
 
 #pragma once
+#include <set>
 #include <string>
 #include "core/string/lexical_cast.h"
 #include "core/tuple/parse.h"
+#include "core/util/exception.h"
 
 namespace core {
 
@@ -31,10 +33,10 @@ public:
     bool contains(char ch) const;
     
     // Return true is String contains any characters in letters.
-    bool contains_any(string_view letters) const;
+    bool contains_any(std::string_view letters) const;
 	
     // Return true is String contains all characters in letters.
-    bool contains_all(string_view letters) const;
+    bool contains_all(std::string_view letters) const;
 	
     // Return true is String contains any characters in letters.
     bool contains_any(const std::set<char>& letters) const;
@@ -93,10 +95,10 @@ public:
     // str.match("mno")      == true;
     // str.match("abc$")     == false;
     // str.match("^xyz")     == false;
-    bool match(const string& pattern) const;
+    bool match(const std::string& pattern) const;
 
     // Split on the given `regex` and return the vector of results.
-    std::vector<string_view> split_on_regex(const std::string& regex) const;
+    std::vector<std::string_view> split_on_regex(const std::string& regex) const;
 
     // Return the lexical_cast of this string to type `T`.
     //

@@ -2,12 +2,12 @@
 //
 
 #pragma once
-#include "core/util/common.h"
+#include <string>
 
 namespace core
 {
 
-void tolower(string& str);
-string tolower(string_view str);
+void tolower(std::string& str);
+std::string tolower(std::string_view str);
 
 }; // end ns core

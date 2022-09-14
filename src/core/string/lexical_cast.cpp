@@ -9,14 +9,14 @@
 
 namespace core {
 
-lexical_cast_error::lexical_cast_error(string_view input, string_view type)
+lexical_cast_error::lexical_cast_error(std::string_view input, std::string_view type)
     : std::runtime_error(fmt::sprintf("cannot parse '%s' as '%s'", input, type))
 { }
 
 namespace detail
 {
 
-bool lexical_cast_impl<bool>::parse(string_view input)
+bool lexical_cast_impl<bool>::parse(std::string_view input)
 {
     if (input == "0" or input == "f" or input == "false")
 	return false;
@@ -25,17 +25,17 @@ bool lexical_cast_impl<bool>::parse(string_view input)
     throw lexical_cast_error(input, "bool");
 }
 
-char lexical_cast_impl<char>::parse(string_view input)
+char lexical_cast_impl<char>::parse(std::string_view input)
 { return input[0]; }
 
-string lexical_cast_impl<string>::parse(string_view input)
-{ return string(input); }
+std::string lexical_cast_impl<std::string>::parse(std::string_view input)
+{ return std::string(input); }
 
-const char* lexical_cast_impl<const char*>::parse(string_view input)
+const char* lexical_cast_impl<const char*>::parse(std::string_view input)
 { return input.begin(); }
 
 template<class T>
-T parse_integral(string_view input)
+T parse_integral(std::string_view input)
 {
     try
     {
@@ -65,14 +65,14 @@ T parse_integral(string_view input)
 }
 
 #define CODE(T)						\
-    T lexical_cast_impl<T>::parse(string_view input)	\
+    T lexical_cast_impl<T>::parse(std::string_view input)	\
     { return parse_integral<T>(input); }
-CORE_PP_EVAL_MAP(CODE, int8, int16, int32, int64,
-		 uint8, uint16, uint32, uint64);
+CORE_PP_EVAL_MAP(CODE, std::int8_t, std::int16_t, std::int32_t, std::int64_t,
+		 std::uint8_t, std::uint16_t, std::uint32_t, std::uint64_t);
 #undef CODE
 
 template<class T>
-T parse_floating_point(string_view input)
+T parse_floating_point(std::string_view input)
 {
     try
     {
@@ -93,9 +93,9 @@ T parse_floating_point(string_view input)
 }
 
 #define CODE(T)						\
-    T lexical_cast_impl<T>::parse(string_view input)	\
+    T lexical_cast_impl<T>::parse(std::string_view input)	\
     { return parse_floating_point<T>(input); }
-CORE_PP_EVAL_MAP(CODE, real32, real64, real128);
+CORE_PP_EVAL_MAP(CODE, float, double, long double);
 #undef CODE
 
 }; // detail

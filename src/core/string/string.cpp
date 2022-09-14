@@ -27,14 +27,14 @@ bool String::contains(char character) const {
     return false;
 }
 
-bool String::contains_any(string_view letters) const {
+bool String::contains_any(std::string_view letters) const {
     for (auto l : letters)
 	if (contains(l))
 	    return true;
     return false;
 }
 
-bool String::contains_all(string_view letters) const {
+bool String::contains_all(std::string_view letters) const {
     for (auto l : letters)
 	if (not contains(l))
 	    return false;
@@ -134,7 +134,7 @@ String& String::intersect_prefix1(const std::string& str) {
     return *this;
 }
 
-bool String::match(const string& pattern) const {
+bool String::match(const std::string& pattern) const {
     std::regex re{pattern};
     return std::regex_search(*this, re);
 }

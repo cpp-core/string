@@ -2,14 +2,19 @@
 //
 
 #pragma once
-#include "core/util/common.h"
+#include <string>
 
 namespace core {
 
 template<typename InputIterator>
-string join(InputIterator begin, InputIterator end, string_view separator, string_view terminator);
+std::string join(InputIterator begin,
+		 InputIterator end,
+		 std::string_view separator,
+		 std::string_view terminator);
 
 template<typename Container>
-string join(const Container& strs, string_view separator = ", ", string_view terminator = "");
+std::string join(const Container& strs,
+		 std::string_view separator = ", ",
+		 std::string_view terminator = "");
 
 }; // end ns core

@@ -1,4 +1,4 @@
-// Copyright (C) 2017, 2018, 2019, 2021 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2021, 2022 by Mark Melton
 //
 
 #pragma once
@@ -8,7 +8,7 @@ namespace core::detail {
 
 template<class T, class U>
 struct lexical_cast_impl<std::pair<T,U>> {
-    static std::pair<T,U> parse(string_view s, string_view sep = ":") {
+    static std::pair<T,U> parse(std::string_view s, std::string_view sep = ":") {
 	auto pos = s.find_first_of(sep);
 	if ((pos == s.size()) or (pos != s.find_last_of(sep)))
 	    throw core::lexical_cast_error{s, "first:second"};
@@ -20,7 +20,7 @@ struct lexical_cast_impl<std::pair<T,U>> {
 
 template<class T>
 struct lexical_cast_impl<std::vector<T>> {
-    static std::vector<T> parse(string_view s, char sep = ',') {
+    static std::vector<T> parse(std::string_view s, char sep = ',') {
 	std::vector<T> container;
 	if (s.size() > 0) {
 	    const char *ptr = s.data();

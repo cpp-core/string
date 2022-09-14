@@ -8,7 +8,7 @@
 using namespace core;
 
 template<size_t N>
-bool match(const fixed_string<N>& s, string_view view)
+bool match(const fixed_string<N>& s, std::string_view view)
 {
     for (size_t i = 0; i < view.size(); ++i)
 	if (s[i] != view[i])

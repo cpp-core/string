@@ -2,7 +2,7 @@
 //
 
 #pragma once
-#include "core/util/common.h"
+#include <string>
 #include "core/util/span.h"
 
 namespace core {
@@ -25,7 +25,7 @@ public:
 	: m_arr()
     { }
     
-    fixed_string(string_view view)
+    fixed_string(std::string_view view)
     {
 	if (view.size() > N)
 	    throw std::runtime_error("string to long to fit into fixed string");
@@ -38,7 +38,7 @@ public:
 	std::copy(arr.begin(), arr.end(), m_arr.begin());
     }
 
-    operator string() const { return string(begin(), end()); }
+    operator std::string() const { return string(begin(), end()); }
 
     bool operator==(const Self& other) const
     { return m_arr == other.m_arr; }
@@ -46,7 +46,7 @@ public:
     bool operator==(const Array& other) const
     { return m_arr == other; }
 
-    bool operator==(const string& other) const
+    bool operator==(const std::string& other) const
     { return !strncmp(begin(), other.c_str(), size()); }
 
     bool operator!=(const Self& other) const
@@ -55,7 +55,7 @@ public:
     bool operator!=(const Array& other) const
     { return m_arr != other; }
 
-    bool operator!=(const string& other) const
+    bool operator!=(const std::string& other) const
     { return not (*this == other); }
 
     bool operator<(const Self& other) const
@@ -72,8 +72,8 @@ public:
     char *begin() { return m_arr.begin(); }
     char *end() { return m_arr.end(); }
     
-    char operator[](index_t i) const { return m_arr[i]; }
-    char& operator[](index_t i) { return m_arr[i]; }
+    char operator[](std::ptrdiff_t i) const { return m_arr[i]; }
+    char& operator[](std::ptrdiff_t i) { return m_arr[i]; }
 
     template<class Archive>
     void serialize(Archive& archive)

@@ -2,20 +2,20 @@
 //
 
 #pragma once
+#include <cstdint>
 #include <sstream>
-#include "core/util/common.h"
 
 namespace core {
 
 template<class T>
-string to_string(const T& value) {
+std::string tostring(const T& value) {
     std::stringstream ss;
     ss << value;
     return ss.str();
 }
 
 struct lexical_cast_error : public std::runtime_error
-{ lexical_cast_error(string_view input, string_view type); };
+{ lexical_cast_error(std::string_view input, std::string_view type); };
 
 namespace detail
 {
@@ -25,68 +25,68 @@ struct lexical_cast_impl;
 
 template<>
 struct lexical_cast_impl<bool>
-{ static bool parse(string_view); };
+{ static bool parse(std::string_view); };
 
 template<>
 struct lexical_cast_impl<char>
-{ static char parse(string_view); };
+{ static char parse(std::string_view); };
 
 template<>
-struct lexical_cast_impl<string>
-{ static string parse(string_view); };
+struct lexical_cast_impl<std::string>
+{ static std::string parse(std::string_view); };
 
 template<>
 struct lexical_cast_impl<const char*>
-{ static const char* parse(string_view); };
+{ static const char* parse(std::string_view); };
 
 template<>
-struct lexical_cast_impl<uint8>
-{ static uint8 parse(string_view s); };
+struct lexical_cast_impl<std::uint8_t>
+{ static std::uint8_t parse(std::string_view s); };
 
 template<>
-struct lexical_cast_impl<uint16>
-{ static uint16 parse(string_view s); };
+struct lexical_cast_impl<std::uint16_t>
+{ static std::uint16_t parse(std::string_view s); };
 
 template<>
-struct lexical_cast_impl<uint32>
-{ static uint32 parse(string_view s); };
+struct lexical_cast_impl<std::uint32_t>
+{ static std::uint32_t parse(std::string_view s); };
 
 template<>
-struct lexical_cast_impl<uint64>
-{ static uint64 parse(string_view s); };
+struct lexical_cast_impl<std::uint64_t>
+{ static std::uint64_t parse(std::string_view s); };
 
 template<>
-struct lexical_cast_impl<int8>
-{ static int8 parse(string_view s); };
+struct lexical_cast_impl<std::int8_t>
+{ static std::int8_t parse(std::string_view s); };
 
 template<>
-struct lexical_cast_impl<int16>
-{ static int16 parse(string_view s); };
+struct lexical_cast_impl<std::int16_t>
+{ static std::int16_t parse(std::string_view s); };
 
 template<>
-struct lexical_cast_impl<int32>
-{ static int32 parse(string_view s); };
+struct lexical_cast_impl<std::int32_t>
+{ static std::int32_t parse(std::string_view s); };
 
 template<>
-struct lexical_cast_impl<int64>
-{ static int64 parse(string_view s); };
+struct lexical_cast_impl<std::int64_t>
+{ static std::int64_t parse(std::string_view s); };
 
 template<>
-struct lexical_cast_impl<real32>
-{ static real32 parse(string_view s); };
+struct lexical_cast_impl<float>
+{ static float parse(std::string_view s); };
 
 template<>
-struct lexical_cast_impl<real64>
-{ static real64 parse(string_view s); };
+struct lexical_cast_impl<double>
+{ static double parse(std::string_view s); };
 
 template<>
-struct lexical_cast_impl<real128>
-{ static real128 parse(string_view s); };
+struct lexical_cast_impl<long double>
+{ static long double parse(std::string_view s); };
 
 }; // detail
 
 template<class T, class... Us>
-T lexical_cast(string_view s, Us... extra)
+T lexical_cast(std::string_view s, Us... extra)
 { return detail::lexical_cast_impl<T>::parse(s, extra...); }
 
 }; // end ns core

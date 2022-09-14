@@ -2,13 +2,13 @@
 //
 
 #pragma once
-#include "core/util/common.h"
+#include <string>
 
 namespace core
 {
 
-string slurp_into_string(const string& filename);
-string slurp_into_string(string_view filename);
-string slurp_into_string(std::istream& is);
+std::string slurp_into_string(const std::string& filename);
+std::string slurp_into_string(std::string_view filename);
+std::string slurp_into_string(std::istream& is);
 
 }; // end ns core

@@ -2,11 +2,11 @@
 //
 
 #pragma once
-#include "core/util/common.h"
+#include <string>
 
 namespace core
 {
 
-bool iequals(string_view a, string_view b);
+bool iequals(std::string_view a, std::string_view b);
 
 }; // end ns core

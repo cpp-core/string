@@ -1,4 +1,4 @@
-// Copyright (C) 2017, 2018, 2019, 2021 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2021, 2022 by Mark Melton
 //
 
 #include <gtest/gtest.h>
@@ -11,8 +11,8 @@ using namespace coro;
 
 const int NumberSamples = 64;
 
-using TestTypes = std::tuple<int,real,string>;
-using TestContainers = std::tuple<std::vector<int>,std::vector<string>>;
+using TestTypes = std::tuple<int,double,std::string>;
+using TestContainers = std::tuple<std::vector<int>,std::vector<std::string>>;
 
 TEST(StringLexicalStl, Pair)
 {
@@ -35,7 +35,7 @@ TEST(StringLexicalCast, Vector)
 	    auto g = take(sampler<T>(), NumberSamples);
 	    for (const auto& container : g) {
 		int idx{0};
-		string str;
+		std::string str;
 		for (const auto& elem : container) {
 		    if (idx++)
 			str += ",";

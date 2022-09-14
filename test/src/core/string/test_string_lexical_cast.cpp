@@ -7,10 +7,11 @@
 #include "coro/stream/stream.h"
 
 using namespace core;
+using namespace std::string_literals;
 
 TEST(StringLexicalCastTest, String)
 {
-    std::string s = lexical_cast<std::string>(string("abc"));
+    std::string s = lexical_cast<std::string>("abc"s);
     EXPECT_EQ(s, "abc");
 }
 
@@ -34,10 +35,10 @@ struct number_test
 	auto generator = coro::sampler<T>(actual_min_value, actual_max_value);
 	for (auto value : std::move(generator) | coro::take(5))
 	{
-	    string s = fmt::format(mp::extrema<T>::fmt_spec(), value);
+	    std::string s = fmt::format(mp::extrema<T>::fmt_spec(), value);
 	    auto n = lexical_cast<T>(s);
 	    EXPECT_EQ(value, n);
-	    string s2 = fmt::format(mp::extrema<T>::fmt_spec(), n);
+	    std::string s2 = fmt::format(mp::extrema<T>::fmt_spec(), n);
 	    EXPECT_EQ(s, s2);
 	}
     }
@@ -56,60 +57,60 @@ void hex_test() {
 
 TEST(StringLexicalCastTest, Int8)
 {
-    number_test<int8>::apply();
-    hex_test<int8>();
+    number_test<std::int8_t>::apply();
+    hex_test<std::int8_t>();
 }
 
 TEST(StringLexicalCastTest, Int16)
 {
-    number_test<int16>::apply();
-    hex_test<int16>();
+    number_test<std::int16_t>::apply();
+    hex_test<std::int16_t>();
 }
 
 TEST(StringLexicalCastTest, Int32)
 {
-    number_test<int32>::apply();
-    hex_test<int32>();
+    number_test<std::int32_t>::apply();
+    hex_test<std::int32_t>();
 }
 
 TEST(StringLexicalCastTest, Int64)
 {
-    number_test<int64>::apply();
-    hex_test<int64>();
+    number_test<std::int64_t>::apply();
+    hex_test<std::int64_t>();
 }
 
 TEST(StringLexicalCastTest, Uint8)
 {
-    number_test<uint8>::apply();
-    hex_test<uint8>();
+    number_test<std::uint8_t>::apply();
+    hex_test<std::uint8_t>();
 }
 
 TEST(StringLexicalCastTest, Uint16)
 {
-    number_test<uint16>::apply();
-    hex_test<uint16>();
+    number_test<std::uint16_t>::apply();
+    hex_test<std::uint16_t>();
 }
 
 TEST(StringLexicalCastTest, Uint32)
 {
-    number_test<uint32>::apply();
-    hex_test<uint32>();
+    number_test<std::uint32_t>::apply();
+    hex_test<std::uint32_t>();
 }
 
 TEST(StringLexicalCastTest, Uint64)
 {
-    number_test<uint64>::apply();
-    hex_test<uint64>();
+    number_test<std::uint64_t>::apply();
+    hex_test<std::uint64_t>();
 }
 
 TEST(StringLexicalCastTest, Real32)
-{ number_test<real32>::apply(); }
+{ number_test<float>::apply(); }
 
 TEST(StringLexicalCastTest, Real64)
-{ number_test<real64>::apply(); }
+{ number_test<double>::apply(); }
 
 TEST(StringLexicalCastTest, Real128)
-{ number_test<real128>::apply(); }
+{ number_test<long double>::apply(); }
 
 
 int main(int argc, char *argv[])

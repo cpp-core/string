@@ -1,4 +1,4 @@
-// Copyright (C) 2019 by Mark Melton
+// Copyright (C) 2019, 2022 by Mark Melton
 //
 
 #include "core/string/tolower.h"
@@ -6,15 +6,15 @@
 namespace core
 {
 
-void tolower(string& str)
+void tolower(std::string& str)
 {
     for (auto& c : str)
 	c = std::tolower(c);
 }
 
-string tolower(string_view str)
+std::string tolower(std::string_view str)
 {
-    string r{str};
+    std::string r{str};
     tolower(r);
     return r;
 }

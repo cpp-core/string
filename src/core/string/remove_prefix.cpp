@@ -1,4 +1,4 @@
-// Copyright (C) 2019 by Mark Melton
+// Copyright (C) 2019, 2022 by Mark Melton
 //
 
 #include "core/string/remove_prefix.h"
@@ -6,7 +6,7 @@
 namespace core
 {
 
-string_view remove_prefix_view(string_view str, string_view prefix)
+std::string_view remove_prefix_view(std::string_view str, std::string_view prefix)
 {
     auto prefix_ptr = prefix.data();
     auto prefix_end = prefix_ptr + prefix.size();
@@ -21,13 +21,13 @@ string_view remove_prefix_view(string_view str, string_view prefix)
     }
     
     if (prefix_ptr == prefix_end)
-	return string_view{str_ptr, size_t(str_end - str_ptr)};
+	return std::string_view{str_ptr, size_t(str_end - str_ptr)};
     return str;
 }
 
-string remove_prefix(string_view str, string_view prefix)
+std::string remove_prefix(std::string_view str, std::string_view prefix)
 {
-    return string{remove_prefix_view(str, prefix)};
+    return std::string{remove_prefix_view(str, prefix)};
 }
 
 }; // end ns core

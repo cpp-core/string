@@ -1,4 +1,4 @@
-// Copyright (C) 2018, 2019 by Mark Melton
+// Copyright (C) 2018, 2019, 2022 by Mark Melton
 //
 
 #include <fstream>
@@ -7,7 +7,7 @@
 
 namespace core {
 
-string slurp_into_string(const string& filename)
+std::string slurp_into_string(const std::string& filename)
 {
   std::ifstream is(filename, std::ios::in | std::ios::binary);
   if (not is)
@@ -21,10 +21,10 @@ string slurp_into_string(const string& filename)
   return contents;
 }
 
-string slurp_into_string(string_view filename)
-{ return slurp_into_string(string{filename}); }
+std::string slurp_into_string(std::string_view filename)
+{ return slurp_into_string(std::string{filename}); }
 
-string slurp_into_string(std::istream& is)
+std::string slurp_into_string(std::istream& is)
 {
     std::ostringstream contents;
     contents << is.rdbuf();

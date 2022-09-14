@@ -1,4 +1,4 @@
-// Copyright (C) 2017, 2018, 2019, 2021 by Mark Melton
+// Copyright (C) 2017, 2018, 2019, 2021, 2022 by Mark Melton
 //
 
 #include <gtest/gtest.h>
@@ -7,17 +7,18 @@
 #include "core/fp/fold.h"
 #include "coro/stream/stream.h"
 
+using namespace std::string_literals;
 using namespace core;
 using namespace coro;
 using core::fp::all;
 
 const int NumberSamples = 64;
 
-bool is_lower_case(const string& str) {
+bool is_lower_case(const std::string& str) {
     return all(str, [](char c) { return std::islower(c); });
 }
 
-bool is_upper_case(const string& str) {
+bool is_upper_case(const std::string& str) {
     return all(str, [](char c) { return std::isupper(c); });
 }
 
@@ -113,7 +114,7 @@ TEST(String, Matches)
 TEST(String, Parse)
 {
     auto str = "1.23"_S;
-    auto x = str.parse<real>();
+    auto x = str.parse<double>();
     EXPECT_EQ(x, 1.23);
     EXPECT_THROW(str.parse<int>(), std::runtime_error);
 }
@@ -121,10 +122,10 @@ TEST(String, Parse)
 TEST(String, ParseTuple)
 {
     auto str = "1.23,hello"_S;
-    auto [x, s] = str.parse<real,std::string>(",");
+    auto [x, s] = str.parse<double,std::string>(",");
     EXPECT_EQ(x, 1.23);
     EXPECT_EQ(s, "hello"s);
-    EXPECT_THROW((str.parse<real,real>(",")), std::runtime_error);
+    EXPECT_THROW((str.parse<double,double>(",")), std::runtime_error);
 }
 
 int main(int argc, char *argv[])

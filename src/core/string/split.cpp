@@ -1,8 +1,12 @@
 // Copyright (C) 2017, 2018, 2019, 2020, 2022 by Mark Melton
 //
 
-#include "core/util/common.h"
 #include "core/string/split.h"
+
+using std::string;
+using std::string_view;
+using strings = std::vector<string>;
+using string_views = std::vector<string_view>;
 
 namespace core {
 

@@ -3,10 +3,11 @@
 
 #include <gtest/gtest.h>
 #include <fmt/format.h>
-#include "core/util/common.h"
 #include "core/string/split.h"
 
 using namespace core;
+using std::string_view;
+using string_views = std::vector<string_view>;
 
 TEST(StringSplit, Empty)
 {
