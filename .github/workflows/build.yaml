@@ -21,18 +21,19 @@ jobs:
       with:
         ssh-private-key: |
           ${{ secrets.CXX_DEPENDS }}
-          ${{ secrets.CXX_CORE_PP }}
-          ${{ secrets.CXX_CORE_MP }}
           ${{ secrets.CXX_CORE_FP }}
+          ${{ secrets.CXX_CORE_MP }}
+          ${{ secrets.CXX_CORE_PP }}
+          ${{ secrets.CXX_CORE_STRING }}
           ${{ secrets.CXX_CORE_TUPLE }}
           ${{ secrets.CXX_CORE_UTIL }}
           ${{ secrets.CXX_CORO_STREAM }}
         
-    - name: Checkout cxx-core-fp
+    - name: Checkout cxx-core-string
       uses: actions/checkout@v2
       with:
-        repository: melton1968/cxx-core-fp
-        path: cxx-core-fp
+        repository: melton1968/cxx-core-string
+        path: cxx-core-string
         
     - name: Checkout cxx-depends
       uses: actions/checkout@v2
