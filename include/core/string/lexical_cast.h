@@ -8,7 +8,7 @@
 namespace core::str {
 
 template<class T>
-std::string tostring(const T& value) {
+std::string to_string(const T& value) {
     std::stringstream ss;
     ss << value;
     return ss.str();
