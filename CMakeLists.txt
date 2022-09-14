@@ -106,4 +106,4 @@ endif()
 #
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/install_config.cmake)
 install_config(cxx_core_string)
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/core/fp DESTINATION include/core/)
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/core/string DESTINATION include/core/)
