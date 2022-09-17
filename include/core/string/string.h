@@ -2,8 +2,10 @@
 //
 
 #pragma once
+#include <fmt/format.h>
 #include <set>
 #include <string>
+#include <vector>
 #include "core/string/lexical_cast.h"
 #include "core/tuple/parse.h"
 #include "core/util/exception.h"
@@ -122,7 +124,8 @@ public:
 	constexpr auto N = sizeof...(Ts);
 	auto fields = split_on_regex(regex);
 	if (fields.size() != N)
-	    throw core::runtime_error("expected {} fields, but got {}", N, fields.size());
+	    throw std::runtime_error
+		(fmt::format("expected {} fields, but got {}", N, fields.size()));
 	return core::tp::parse<std::tuple<Ts...>>(fields);
     }
 };

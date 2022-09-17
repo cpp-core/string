@@ -25,7 +25,6 @@ set(LIBRARIES
   cxx_core_pp::cxx_core_pp
   cxx_core_mp::cxx_core_mp
   cxx_core_tuple::cxx_core_tuple
-  cxx_core_util::cxx_core_util
   cxx_coro_stream::cxx_coro_stream
   googletest::cxx-googletest
   Threads::Threads)

@@ -22,12 +22,12 @@ struct number_test
     static void apply()
     {
 	auto actual_min_value = mp::extrema<T>::min();
-	auto min_repr = fmt::format(mp::extrema<T>::fmt_spec(), actual_min_value);
+	auto min_repr = fmt::format(fmt::runtime(mp::extrema<T>::fmt_spec()), actual_min_value);
 	auto min_value = lexical_cast<T>(min_repr);
 	EXPECT_EQ(min_value, actual_min_value);
 
 	auto actual_max_value = mp::extrema<T>::max();
-	auto max_repr = fmt::format(mp::extrema<T>::fmt_spec(), actual_max_value);
+	auto max_repr = fmt::format(fmt::runtime(mp::extrema<T>::fmt_spec()), actual_max_value);
 	auto max_value = lexical_cast<T>(max_repr);
 	EXPECT_EQ(max_value, actual_max_value);
 	
@@ -36,10 +36,10 @@ struct number_test
 	auto generator = coro::sampler<T>(actual_min_value, actual_max_value);
 	for (auto value : std::move(generator) | coro::take(5))
 	{
-	    std::string s = fmt::format(mp::extrema<T>::fmt_spec(), value);
+	    std::string s = fmt::format(fmt::runtime(mp::extrema<T>::fmt_spec()), value);
 	    auto n = lexical_cast<T>(s);
 	    EXPECT_EQ(value, n);
-	    std::string s2 = fmt::format(mp::extrema<T>::fmt_spec(), n);
+	    std::string s2 = fmt::format(fmt::runtime(mp::extrema<T>::fmt_spec()), n);
 	    EXPECT_EQ(s, s2);
 	}
     }

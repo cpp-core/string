@@ -3,7 +3,6 @@
 
 #pragma once
 #include <string>
-#include "core/util/span.h"
 
 namespace core::str {
 
@@ -67,7 +66,7 @@ public:
     constexpr size_t size() const { return Size; }
     const char *begin() const { return m_arr.begin(); }
     const char *end() const { return m_arr.end(); }
-    std::span<char> span() { return { m_arr.begin(), m_arr.end() }; }
+    std::string_view span() { return { m_arr.begin(), size_t(m_arr.end() - m_arr.begin()) }; }
     
     char *begin() { return m_arr.begin(); }
     char *end() { return m_arr.end(); }
