@@ -8,7 +8,6 @@
 #include <vector>
 #include "core/string/lexical_cast.h"
 #include "core/tuple/parse.h"
-#include "core/util/exception.h"
 
 namespace core::str {
 
