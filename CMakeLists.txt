@@ -1,9 +1,9 @@
 cmake_minimum_required (VERSION 3.22 FATAL_ERROR)
-project (cxx_core_string VERSION 0.1 LANGUAGES C CXX)
+project (string VERSION 0.1 LANGUAGES C CXX)
 
 # Make including this file idempotent
 #
-if(TARGET cxx_core_string)
+if(TARGET string)
   return()
 endif()
 
@@ -12,7 +12,7 @@ endif()
 # Build the tests and set directories if this is the master project
 #
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
-  set(CORE_STRING_TEST ON CACHE BOOL "Generate the tests.")
+  set(STRING_TEST ON CACHE BOOL "Generate the tests.")
   set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
   set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
   set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -24,26 +24,26 @@ endif()
 
 # Options for generating tests and documentation.
 #
-option(CORE_STRING_TEST "Generate the tests." OFF)
-option(CORE_STRING_DOCS "Generate the docs." OFF)
+option(STRING_TEST "Generate the tests." OFF)
+option(STRING_DOCS "Generate the docs." OFF)
 
 # Add our dependencies
 #
 include(GNUInstallDirs)
-find_package(cxx_core_pp REQUIRED)
-find_package(cxx_core_mp REQUIRED)
-find_package(cxx_core_tuple REQUIRED)
-find_package(cxx_core_fp REQUIRED)
-find_package(cxx_coro_stream REQUIRED)
+find_package(pp REQUIRED)
+find_package(mp REQUIRED)
+find_package(tuple REQUIRED)
+find_package(fp REQUIRED)
+find_package(stream REQUIRED)
 find_package(fmt REQUIRED)
 
 # Output configuration
 #
-message("-- cxx-core-fp: Configuration: ${CMAKE_CURRENT_SOURCE_DIR}")
-message("-- cxx-core-fp: Included from: ${CMAKE_SOURCE_DIR}")
-message("-- cxx-core-fp: CORE_STRING_TEST ${CORE_STRING_TEST}")
-message("-- cxx-core-fp: CORE_STRING_DOCS ${CORE_STRING_DOCS}")
-message("-- cxx-core-fp: CMAKE_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}")
+message("-- fp: Configuration: ${CMAKE_CURRENT_SOURCE_DIR}")
+message("-- fp: Included from: ${CMAKE_SOURCE_DIR}")
+message("-- fp: STRING_TEST ${STRING_TEST}")
+message("-- fp: STRING_DOCS ${STRING_DOCS}")
+message("-- fp: CMAKE_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}")
 
 # Compilation
 #
@@ -72,23 +72,23 @@ foreach(NAME ${SOURCES})
   list(APPEND FILES "src/core/${NAME}.cpp")
 endforeach()
 
-add_library(cxx_core_string ${FILES})
+add_library(string ${FILES})
 
-target_link_libraries(cxx_core_string PUBLIC
-  cxx_core_pp::cxx_core_pp
-  cxx_core_mp::cxx_core_mp
-  cxx_core_tuple::cxx_core_tuple
+target_link_libraries(string PUBLIC
+  pp::pp
+  mp::mp
+  tuple::tuple
   fmt::fmt
   )
 
-target_include_directories(cxx_core_string
+target_include_directories(string
   PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 # Optionally configure the tests
 #
-if(CORE_STRING_TEST)
+if(STRING_TEST)
   enable_testing()
   if (NOT TARGET check)
     add_custom_target(check ${CMAKE_CTEST_COMMAND})
@@ -99,12 +99,12 @@ endif()
 
 # Optionally configure the documentation
 #
-# if(CORE_STRING_DOCS)
+# if(STRING_DOCS)
 #   add_subdirectory(docs)
 # endif()
 
 # Installation
 #
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/install_config.cmake)
-install_config(cxx_core_string)
+install_config(string)
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/core/string DESTINATION include/core/)
