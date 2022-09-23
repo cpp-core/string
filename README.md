@@ -1,4 +1,4 @@
-[![Build and Unit Test](https://github.com/melton1968/cxx-core-string/actions/workflows/build.yaml/badge.svg)](https://github.com/melton1968/cxx-core-string/actions/workflows/build.yaml)
+[![Build and Unit Test](https://github.com/cpp-core/string/actions/workflows/build.yaml/badge.svg)](https://github.com/cpp-core/string/actions/workflows/build.yaml)
 
 # String Operations
 
