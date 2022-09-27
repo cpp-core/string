@@ -78,6 +78,7 @@ foreach(NAME ${SOURCES})
 endforeach()
 
 add_library(string ${FILES})
+add_library(string::string ALIAS string)
 
 # Define the header files for this library.
 #
