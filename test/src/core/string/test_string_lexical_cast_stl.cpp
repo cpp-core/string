@@ -2,6 +2,7 @@
 //
 
 #include <gtest/gtest.h>
+#include <fmt/format.h>
 #include "core/string/lexical_cast_stl.h"
 #include "core/mp/foreach.h"
 #include "coro/stream/stream.h"
