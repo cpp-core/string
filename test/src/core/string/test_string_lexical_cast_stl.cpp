@@ -44,7 +44,8 @@ TEST(StringLexicalCast, Vector)
 		    str += fmt::format("{}", elem);
 		}
 		auto vec = lexical_cast<T>(str);
-		EXPECT_EQ(vec, container);
+		if (str.size() > 0)
+		    EXPECT_EQ(vec, container);
 	    }
 	});
 }
