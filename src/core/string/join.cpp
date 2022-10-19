@@ -4,7 +4,7 @@
 #include <list>
 #include <set>
 #include <vector>
-#include "core/fp/fold.h"
+#include "core/fp/seq.h"
 #include "core/string/join.h"
 
 using std::string;
@@ -14,6 +14,8 @@ using string_views = std::vector<string_view>;
 using std::list;
 using std::set;
 
+using namespace core::fp;
+
 namespace core::str {
 
 template<class Container>
@@ -22,9 +24,7 @@ string join(const Container& strs, string_view separator, string_view terminator
     if (strs.size() == 0)
 	return string{terminator};
 
-    string infix{separator};
-    auto r = fp::fold_l(++strs.begin(), strs.end(), string{*strs.begin()},
-			[=](const auto& a, const auto& b) { return a + infix + std::string(b); });
+    auto r = source(strs).join(separator);
     r += string{terminator};
     return r;
 }
